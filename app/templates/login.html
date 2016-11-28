@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+  <title>iSchool Career Map Login</title>
+
+  <!-- CSS  -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="{{ url_for('static', filename='materialize.min.css') }}" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="{{ url_for('static', filename='style.css') }}" type="text/css" rel="stylesheet" media="screen,projection"/>
+</head>
+<body>
+  <!-- Nav bar -->
+  <nav class="blue darken-3" role="navigation">
+    <div class="nav-wrapper">
+      <a id="logo-container" class="brand-logo" href="#" ><img src="{{ url_for('static', filename='ischool-logo copy.png') }}"></a>
+    </div>
+  </nav>
+
+  <!-- Main section -->
+  <div id="login-image" class="parallax-container">
+    <div id="bg-image" class="parallax">
+      <img src="{{ url_for('static', filename='south-hall1.jpg') }}" alt="" style="display: block; transform: translate3d(-50%, 34px, 0px);">
+    </div>
+
+    <!-- Main heading -->
+    <div class="container">
+      <br><br><br><br><br><br><br><br><br>
+      <div class="row center title">
+          <h1 class="header center blue-text text-darken-2">Welcome to iSchool Career Map!</h1>
+          <h5 class="header col s12 gray-text text-darken-4">We help you select classes based on your area of interest</h5>
+      </div>
+      <div class="row center">
+        <div id="login-buttons" class="login-buttons-dropdown-align-">
+          <div class="login-buttons-with-only-one-button"><a href="index"><img src="{{ url_for('static', filename='Sign-In-Large---Active.png') }}" class="login-button btn-Linkedin navbar-login"></a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <br>
+  </div>
+  <!-- End Main section -->
+
+  <!-- Details -->
+  <div class="container">
+    <br><br>
+    <div class="row">
+      <div class="col s12 m4">
+        <h5 class="center">What is Career Map?</h5>
+        <p class="light">
+          Career Map is a project by a group of MIMS students to bridge the gap between intended future careers of iSchoolers and the selection of appropriate courses that will lead to them. We realise that course selection can be really hard, so we'd like to ease the process by collecting course ratings and reviews by current and past students.
+        </p>
+      </div>
+      <div class="col s12 m4">
+        <h5 class="center">Why "Sign in with Linkedin"?</h5>
+        <p class="light">
+          We want to ensure the quality of the ratings and reviews. We believe that we can minimize bad behavior by ensuring that everyone's activities are tied to their professional identity on Linkedin.
+        </p>
+      </div>
+      <div class="col s12 m4">
+        <h5 class="center">What do you do with the Linkedin data?</h5>
+        <p class="light">
+          Yackle only accesses your profile information (name, title, profile pic, etc.) and email address. We don't do anything with your data other than simply display it to our members. We don't sell your data, or use it for targetting / ads etc.
+        </p>
+      </div>
+    </div>
+  </div>
+  <!-- End Details -->
+
+  <!-- Footer -->
+  <footer class="page-footer blue darken-3">
+    <div class="container">
+      <div class="row">
+        <div class="col s12">
+          <p class="grey-text text-lighten-4">Made by IOLabbers - Ed, Mud, Liz and Ro</p>
+        </div>
+    </div>
+  </footer>
+
+
+  <!--  Scripts-->
+  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="{{ url_for('static', filename='materialize.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='init.js') }}"></script>
+  </body>
+</html>

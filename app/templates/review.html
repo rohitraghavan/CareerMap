@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+  <title>iSchool Career Map Reviews</title>
+
+  <!-- CSS  -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="{{ url_for('static', filename='materialize.min.css') }}" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="{{ url_for('static', filename='style.css') }}" type="text/css" rel="stylesheet" media="screen,projection"/>
+</head>
+<body>
+  <!-- Nav bar -->
+  <nav class="blue darken-3" role="navigation">
+    <div class="nav-wrapper">
+      <a id="logo-container" class="brand-logo" href="#" ><img src="{{ url_for('static', filename='ischool-logo copy.png') }}"></a>
+      <ul class="right hide-on-med-and-down">
+        <li><a class="btn waves-effect waves-light" href="login">SIGN OUT</a></li>
+      </ul>
+
+      <ul id="nav-mobile" class="side-nav">
+        <li><a class="btn waves-effect waves-light" href="login">SIGN OUT</a></li>
+      </ul>
+      <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+    </div>
+  </nav>
+
+  <!-- Main section -->
+  <div class="parallax-container bg-image-review">
+    <div id="bg-image" class="parallax">
+      <img src="{{ url_for('static', filename='courses.jpg') }}" alt="" style="display: block; transform: translate3d(-50%, 34px, 0px);">
+    </div>
+
+    <!-- Main heading -->
+    <div class="container">
+      <br>
+      <div class="row center title">
+          <h2 class="header center blue-text text-darken-2">Info 202. Information Organization and Retrieval</h2>
+      </div>
+    </div>
+  </div>
+  <!-- End Main section -->
+
+
+  <!-- Course List -->
+  <div class="section grey lighten-4">
+    <div class="container">
+
+      <div class="row">
+        <div class="col s12">
+          <div class="card">
+            <div class="card-content">
+              <div class="row">
+                <div class="col s12">
+                  <p>Three hours of lecture per week. This course introduces the intellectual foundations of information organization and retrieval: conceptual modeling, semantic representation, vocabulary and metadata design, classification, and standardization, as well as information organization and retrieval practices, technology, and applications, including computational processes for analyzing information in both textual and non-textual formats. Students will learn how information organization and retrieval is carried out by professionals, authors, and users; by individuals in association with other individuals, and as part of the business processes in an enterprise and across enterprises.
+
+                  This is a required introductory course for MIMS Master's students, integrating perspectives and best practices from a wide range of disciplines.
+
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="card-action">
+              <div class="row">
+                <div class="col s12">
+                  Reviewed by:
+                    <div class="chip">
+                      <img src="{{ url_for('static', filename='person.jpeg') }}">
+                      Random1
+                    </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col s12">
+          <div class="card">
+            <div class="card-content">
+              <div class="row">
+                <div class="col s12">
+                  <p>Three hours of lecture and one hour of laboratory per week. Course must be completed for a letter grade to fulfill degree requirement. Technological foundations for computing and communications: computer architecture, operating systems, networking, middleware, security. Programming paradigms: object oriented-design, design and analysis of algorithms, data structures, formal languages. Distributed-system architectures and models, inter-process communications, concurrency, system performance.</p>
+                </div>
+              </div>
+            </div>
+            <div class="card-action">
+              <div class="row">
+                <div class="col s12">
+                  Reviewed by:
+                    <div class="chip">
+                      <img src="{{ url_for('static', filename='person.jpeg') }}">
+                      Random2
+                    </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    <br><br>
+    </div>
+  </div>
+  <!-- End Course List -->
+
+  <!-- Footer -->
+  <footer class="page-footer blue darken-3">
+    <div class="container">
+      <div class="row">
+        <div class="col s12">
+          <p class="grey-text text-lighten-4">Made by IOLabbers - Ed, Mud, Liz and Ro</p>
+        </div>
+    </div>
+  </footer>
+
+
+  <!--  Scripts-->
+  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="js/materialize.js"></script>
+  <script src="js/init.js"></script>
+  </body>
+</html>

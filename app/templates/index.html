@@ -16,26 +16,29 @@
         <br>
 
         <!-- Career concentration buttons -->
-        <div class="row">
-            <div class="col s6 m4">
-                <a class="btn-large waves-effect waves-light white blue-text">Product Management</a>
+        <form id="select-concentration" action="select-concentration" method="POST">
+            <input type="hidden" name="concentration-name" id="concentration-name" value="">
+            <div class="row">
+                <div class="col s6 m4">
+                    <a class="btn-concentration-name btn-large waves-effect waves-light white blue-text">Product Management</a>
+                </div>
+                <div class="col s6 m4">
+                    <a class="btn-concentration-name btn-large waves-effect waves-light white blue-text">Data Science</a>
+                </div>
+                <div class="col s6 m4">
+                    <a class="btn-concentration-name btn-large waves-effect waves-light white blue-text">Software Development</a>
+                </div>
+                <div class="col s6 m4">
+                    <a class="btn-concentration-name btn-large waves-effect waves-light white blue-text">User Experience</a>
+                </div>
+                <div class="col s6 m4">
+                    <a class="btn-concentration-name btn-large waves-effect waves-light white blue-text">Consulting</a>
+                </div>
+                <div class="col s6 m4">
+                    <a class="btn-concentration-name btn-large waves-effect waves-light white blue-text">Information Policy</a>
+                </div>
             </div>
-            <div class="col s6 m4">
-                <a class="btn-large waves-effect waves-light white blue-text">Data Science</a>
-            </div>
-            <div class="col s6 m4">
-                <a class="btn-large waves-effect waves-light white blue-text">Software Development</a>
-            </div>
-            <div class="col s6 m4">
-                <a class="btn-large waves-effect waves-light white blue-text">User Experience</a>
-            </div>
-            <div class="col s6 m4">
-                <a class="btn-large waves-effect waves-light white blue-text">Consulting</a>
-            </div>
-            <div class="col s6 m4">
-                <a class="btn-large waves-effect waves-light white blue-text">Information Policy</a>
-            </div>
-        </div>
+        </form>
         <br/>
     </div>
     <br>
@@ -43,23 +46,23 @@
 <!-- End Main section -->
 
 
-<!-- Course List -->
 <div class="section grey lighten-4">
     <div class="container">
 
+        <!-- Course List -->
+        {% for course in courses %}
         <div class="row">
             <div class="col s12">
                 <div class="card">
                     <div class="card-content">
                         <div class="row">
+                            <div id="course_ref" value="{{ course[" course_ref "] }}"></div>
                             <div class="col s12 m10">
-                                <span class="card-title">Info 202. Information Organization and Retrieval</span>
-                                <p>Instructor(s): Robert Glushko, David Bamman</p>
+                                <span class="card-title">{{ course["course_id"] }}. {{ course["course_name"]}}</span>
+                                <p>Instructor(s): {{ course["instructor"] }}</p>
                             </div>
                             <div class="col s12 m2 right-align">
-                                <h5>
-                  5 <i class="small material-icons waves-effect">thumb_up</i>
-                  </h5>
+                                <h5>{{ course["ratings"] }} <i class="small material-icons waves-effect">thumb_up</i></h5>
                             </div>
                         </div>
                     </div>
@@ -69,148 +72,47 @@
                 </div>
             </div>
         </div>
+        {% endfor %}
+        <!-- End Course List -->
 
-        <div class="row">
-            <div class="col s12">
-                <div class="card">
-                    <div class="card-content">
-                        <div class="row">
-                            <div class="col s12 m10">
-                                <span class="card-title">Info 206. Distributed Computing Applications and Infrastructure</span>
-                                <p>Instructor(s): Doug Tygar</p>
-                            </div>
-                            <div class="col s12 m2 right-align">
-                                <h5>
-                  4 <i class="small material-icons waves-effect">thumb_up</i>
-                  </h5>
+        <!-- Add a Course -->
+        {% if concentration_name %}
+        <br>
+        <hr><br>
+        <h5>Think we're missing a course? Add one!</h5>
+        <br>
+        <form id="add-course" action="add-course" method="POST">
+            <input type="hidden" name="concentration-name-add" id="concentration-name-add" value="{{ concentration_name }}">
+            <div class="row">
+                <div class="col s12">
+                    <div class="card">
+                        <div class="card-content grey lighten-5">
+                            <div class="row">
+                                <div class="col s12 m10">
+                                    <span class="card-title">
+                                        <div class="row">
+                                            <div class="col s4">
+                                                <input placeholder="Course ID" id="course_id" name="course_id" type="text" class="validate">
+                                            </div>
+                                            <div class="col s8">
+                                                <input placeholder="Course Name" id="course_name" name="course_name" type="text" class="validate">
+                                            </div>
+                                        </div>
+                                    </span>
+                                    <input placeholder="Instructor Name" id="instructor" name="instructor" type="text" class="validate">
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="card-action">
-                        <a href="review">Reviews</a>
+                        <div class="card-action grey lighten-5">
+                            <a id="btn-add-course">Add Course</a>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </form>
+        <br><br> {% endif %}
+        <!-- End Add a Course-->
 
-        <div class="row">
-            <div class="col s12">
-                <div class="card">
-                    <div class="card-content">
-                        <div class="row">
-                            <div class="col s12 m10">
-                                <span class="card-title">Info 213. User Interface Design and Development</span>
-                                <p>Instructor(s): Robert Youmans</p>
-                            </div>
-                            <div class="col s12 m2 right-align">
-                                <h5>
-                  3 <i class="small material-icons waves-effect">thumb_up</i>
-                  </h5>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card-action">
-                        <a href="review">Reviews</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col s12">
-                <div class="card">
-                    <div class="card-content">
-                        <div class="row">
-                            <div class="col s12 m10">
-                                <span class="card-title">Info 216. Computer-Mediated Communication</span>
-                                <p>Instructor(s): Coye Cheshire, Jennifer King</p>
-                            </div>
-                            <div class="col s12 m2 right-align">
-                                <h5>
-                  2 <i class="small material-icons waves-effect">thumb_up</i>
-                  </h5>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card-action">
-                        <a href="review">Reviews</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col s12">
-                <div class="card">
-                    <div class="card-content">
-                        <div class="row">
-                            <div class="col s12 m10">
-                                <span class="card-title">Info 225. Managing in Information-Intensive Companies</span>
-                                <p>Instructor(s): Morten Hansen</p>
-                            </div>
-                            <div class="col s12 m2 right-align">
-                                <h5>
-                  1 <i class="small material-icons waves-effect">thumb_up</i>
-                  </h5>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card-action">
-                        <a href="review">Reviews</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col s12">
-                <div class="card">
-                    <div class="card-content">
-                        <div class="row">
-                            <div class="col s12 m10">
-                                <span class="card-title">Info 232. Applied Behavioral Economics</span>
-                                <p>Instructor(s): Steven Weber</p>
-                            </div>
-                            <div class="col s12 m2 right-align">
-                                <h5>
-                  1 <i class="small material-icons waves-effect">thumb_up</i>
-                  </h5>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card-action">
-                        <a href="review">Reviews</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col s12">
-                <div class="card">
-                    <div class="card-content">
-                        <div class="row">
-                            <div class="col s12 m10">
-                                <span class="card-title">Info 253. Web Architecture</span>
-                                <p>Instructor(s): Kay Ashaolu</p>
-                            </div>
-                            <div class="col s12 m2 right-align">
-                                <h5>
-                  1 <i class="small material-icons waves-effect">thumb_up</i>
-                  </h5>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card-action">
-                        <a href="review">Reviews</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <br><br>
     </div>
 </div>
-<!-- End Course List -->
-
 {% endblock %}

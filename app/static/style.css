@@ -1,4 +1,6 @@
 /* Custom Stylesheet */
+
+
 /**
  * Use this file to override Materialize files so you can update
  * the core Materialize files in the future
@@ -7,12 +9,13 @@
  */
 
 .icon-block {
-  padding: 0 15px;
+    padding: 0 15px;
 }
 
 .icon-block .material-icons {
-	font-size: inherit;
+    font-size: inherit;
 }
+
 
 /* Career Map Customizations start here */
 
@@ -21,13 +24,13 @@
     padding-top: 8px;
 }
 
-.col > .btn-large {
-	width: 100%;
-	margin-bottom: 5px;
+.col>.btn-large {
+    width: 100%;
+    margin-bottom: 5px;
 }
 
 footer.page-footer {
-	padding-top: 0px;
+    padding-top: 0px;
 }
 
 #bg-image {
@@ -35,7 +38,7 @@ footer.page-footer {
 }
 
 .title {
-	font-weight: bolder;
+    font-weight: bolder;
 }
 
 .navbar-login {

@@ -19,11 +19,12 @@
             <a id="logo-container" class="brand-logo" href="#"><img src="{{ url_for('static', filename='ischool-logo copy.png') }}"></a>
             {% if not login %}
             <ul class="right hide-on-med-and-down">
-                <li><a class="btn waves-effect waves-light" href="login">SIGN OUT</a></li>
+                <li>Logged in as: {{ user }}</li>
+                <li><a class="btn waves-effect waves-light" href="logout">SIGN OUT</a></li>
             </ul>
 
             <ul id="nav-mobile" class="side-nav">
-                <li><a class="btn waves-effect waves-light" href="login">SIGN OUT</a></li>
+                <li><a class="btn waves-effect waves-light" href="logout">SIGN OUT</a></li>
             </ul>
             <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
             {% endif %}

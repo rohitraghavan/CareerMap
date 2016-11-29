@@ -14,11 +14,22 @@
             <h5 class="header col s12 gray-text text-darken-4">We help you select classes based on your area of interest</h5>
         </div>
         <div class="row center">
-            <div id="login-buttons" class="login-buttons-dropdown-align-">
-                <div class="login-buttons-with-only-one-button">
-                    <a href="index"><img src="{{ url_for('static', filename='Sign-In-Large---Active.png') }}" class="login-button btn-Linkedin navbar-login"></a>
+
+            <!-- Remove once Linkedin login is implemented -->
+            <form action="authenticate-login" method="POST">
+                <div class="input-field col s12">
+                    <input placeholder="Batman" id="username" name="username" type="text" class="validate">
+                    <label for="username">Login Name</label>
                 </div>
-            </div>
+                <br>
+                <!-- End Remove once Linkedin login is implemented -->
+
+                <div id="login-buttons" class="login-buttons-dropdown-align-">
+                    <div class="login-buttons-with-only-one-button">
+                        <button><img src="{{ url_for('static', filename='Sign-In-Large---Active.png') }}" class="login-button btn-Linkedin navbar-login"></button>
+                    </div>
+                </div>
+            </form>
         </div>
     </div>
     <br>

@@ -90,9 +90,10 @@ def add_course():
     return redirect("index")
 
 
-@app.route("/review")
-def review():
-    return render_template("review.html")
+@app.route("/review/<value>", methods=["GET","POST"])
+def review(value):
+    get_course = models.retrieve_name(value)
+    return render_template("review.html", name=get_course[0])
 
 
 # app.config.from_object("config")

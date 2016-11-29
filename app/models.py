@@ -43,7 +43,6 @@ def insert_course(concentration_name, course_id, course_name, instructor):
                     (course_ref, concentration_name))
         con.commit()
 
-
 def insert_review(ref, user, review):
     '''
     Add review for the course to the database
@@ -54,6 +53,14 @@ def insert_review(ref, user, review):
         cur.execute(
             "INSERT INTO course_reviews (ref, user_id, review_text) VALUES (?, ?, ?)", (ref, user, review))
         con.commit()
+
+def retrieve_name(value):
+    with sql.connect("career-map.db") as con:
+        con.row_factory = sql.Row
+        cur = con.cursor()
+        get_course = cur.execute(
+            "SELECT course_id, course_name FROM courses WHERE course_ref = '" + value + "'").fetchall()
+    return get_course
 
 # def retrieve_review():
     # display review retrieved from table course_review_vw

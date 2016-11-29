@@ -62,8 +62,14 @@ def retrieve_name(value):
             "SELECT course_id, course_name FROM courses WHERE course_ref = '" + value + "'").fetchall()
     return get_course
 
-# def retrieve_review():
+def retrieve_review(value):
     # display review retrieved from table course_review_vw
+    with sql.connect("career-map.db") as con:
+        con.row_factory = sql.Row
+        cur = con.cursor()
+        reviews = cur.execute(
+            "SELECT * FROM course_reviews WHERE course_ref = '" + value + "'").fetchall()
+    return reviews
 
 
 # def retrieve_rating():

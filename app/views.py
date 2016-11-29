@@ -93,7 +93,11 @@ def add_course():
 @app.route("/review/<value>", methods=["GET","POST"])
 def review(value):
     get_course = models.retrieve_name(value)
-    return render_template("review.html", name=get_course[0])
+    #if request.method == "POST":
+        # concentration_name = request.form["concentration-name"]
+    current_user = escape(session["username"])
+    reviews = models.retrieve_review(value)
+    return render_template("review.html", name=get_course[0], user=current_user, reviews=reviews)
 
 
 # app.config.from_object("config")

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0" />
+    <title>iSchool Career Map Home</title>
+
+    <!-- CSS  -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="{{ url_for('static', filename='materialize.min.css') }}" type="text/css" rel="stylesheet" media="screen,projection" />
+    <link href="{{ url_for('static', filename='style.css') }}" type="text/css" rel="stylesheet" media="screen,projection" />
+</head>
+
+<body>
+    <!-- Nav bar header -->
+    <nav class="blue darken-3" role="navigation">
+        <div class="nav-wrapper">
+            <a id="logo-container" class="brand-logo" href="#"><img src="{{ url_for('static', filename='ischool-logo copy.png') }}"></a>
+            {% if not login %}
+            <ul class="right hide-on-med-and-down">
+                <li><a class="btn waves-effect waves-light" href="login">SIGN OUT</a></li>
+            </ul>
+
+            <ul id="nav-mobile" class="side-nav">
+                <li><a class="btn waves-effect waves-light" href="login">SIGN OUT</a></li>
+            </ul>
+            <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+            {% endif %}
+        </div>
+    </nav>
+
+    {% block content %} {% endblock %}
+
+    <!-- Footer -->
+    <footer class="page-footer blue darken-3">
+        <div class="container">
+            <div class="row">
+                <div class="col s12">
+                    <p class="grey-text text-lighten-4">Made by IOLabbers - Ed, Mud, Liz and Ro</p>
+                </div>
+            </div>
+    </footer>
+
+
+    <!--  Scripts-->
+    <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="{{ url_for('static', filename='materialize.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='init.js') }}"></script>
+</body>
+
+</html>

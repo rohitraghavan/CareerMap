@@ -4,14 +4,17 @@ from flask import render_template, Flask, redirect, url_for, session, request, j
 #from flask_oauthlib.client import OAuth
 # from .forms import LoginForm, SignUpForm, CareerForm
 
-@app.route("/")
-@app.route("/login")
-def login():
-    return render_template('login.html')
 
+@app.route("/")
 @app.route("/index")
 def index():
     return render_template('index.html')
+
+
+@app.route("/login")
+def login():
+    return render_template('login.html', login=True)
+
 
 @app.route("/review")
 def review():

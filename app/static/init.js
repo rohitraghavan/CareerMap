@@ -16,3 +16,27 @@ $("#btn-add-course").on("click", function() {
   $("#add-course").submit();
 
 })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+$("#btn-add-review").on("click", function() {
+  $("#add-review").submit();
+
+})

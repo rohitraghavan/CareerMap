@@ -90,7 +90,7 @@ def add_course():
     return redirect("index")
 
 
-@app.route("/review/<value>", methods=["GET","POST"])
+@app.route("/review/<value>")
 def review(value):
     get_course = models.retrieve_name(value)
     #if request.method == "POST":
@@ -98,6 +98,20 @@ def review(value):
     current_user = escape(session["username"])
     reviews = models.retrieve_review(value)
     return render_template("review.html", name=get_course[0], user=current_user, reviews=reviews)
+
+@app.route("/add-review/<value>", methods=["POST"])
+def add_review(value):
+    '''
+    Adds a review input by the user to the database
+    '''
+    if request.method == "POST":
+        concetration_name = request.form["concentration-name-add"]
+        course_id = request.form["course_id"]
+        course_name = request.form["course_name"]
+        instructor = request.form["instructor"]
+        models.insert_course(concetration_name, course_id,
+                             course_name, instructor)
+    return redirect("review")
 
 
 # app.config.from_object("config")

@@ -104,9 +104,28 @@ def select_concentration():
         courses = models.retrieve_courses(concentration_name)
         return render_template("index.html", user=current_user, courses=courses, concentration_name=concentration_name)
 
-@app.route("/review")
-def review():
-    return render_template("review.html")
+@app.route("/review/<value>")
+def review(value):
+    get_course = models.retrieve_name(value)
+    #if request.method == "POST":
+        # concentration_name = request.form["concentration-name"]
+    current_user = escape(session["username"])
+    reviews = models.retrieve_review(value)
+    return render_template("review.html", name=get_course[0], user=current_user, reviews=reviews)
+
+@app.route("/add-review/<value>", methods=["POST"])
+def add_review(value):
+    '''
+    Adds a review input by the user to the database
+    '''
+    if request.method == "POST":
+        concetration_name = request.form["concentration-name-add"]
+        course_id = request.form["course_id"]
+        course_name = request.form["course_name"]
+        instructor = request.form["instructor"]
+        models.insert_course(concetration_name, course_id,
+                             course_name, instructor)
+    return redirect("review")
 
 
 # app.config.from_object("config")

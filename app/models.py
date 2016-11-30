@@ -77,9 +77,20 @@ def insert_rating(course_ref, user_id, concentration_name):
             "INSERT INTO course_ratings (course_ref, user_id, concentration_name) VALUES (?, ?, ?)", (course_ref, user_id, concentration_name))
         con.commit()
 
-# def retrieve_review():
+
+def retrieve_name(value):
+    with sql.connect("career-map.db") as con:
+        con.row_factory = sql.Row
+        cur = con.cursor()
+        get_course = cur.execute(
+            "SELECT course_id, course_name FROM courses WHERE course_ref = '" + value + "'").fetchall()
+    return get_course
+
+def retrieve_review(value):
     # display review retrieved from table course_review_vw
-
-
-# def retrieve_rating():
-    # Retrieve average rating from database
+    with sql.connect("career-map.db") as con:
+        con.row_factory = sql.Row
+        cur = con.cursor()
+        reviews = cur.execute(
+            "SELECT * FROM course_reviews WHERE course_ref = '" + value + "'").fetchall()
+    return reviews

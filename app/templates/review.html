@@ -10,28 +10,26 @@
     <div class="container">
         <br>
         <div class="row center title">
-            <h2 class="header center blue-text text-darken-2">Info 202. Information Organization and Retrieval</h2>
+            <h2 class="header center blue-text text-darken-2">{{ name[0] }}. {{ name[1] }} 
+            </h2>
         </div>
     </div>
 </div>
 <!-- End Main section -->
 
 
-<!-- Course List -->
+<!-- Reviews -->
+{% if reviews %}
 <div class="section grey lighten-4">
     <div class="container">
-
+    {% for review in reviews %}
         <div class="row">
             <div class="col s12">
                 <div class="card">
                     <div class="card-content">
                         <div class="row">
                             <div class="col s12">
-                                <p>Three hours of lecture per week. This course introduces the intellectual foundations of information organization and retrieval: conceptual modeling, semantic representation, vocabulary and metadata design, classification,
-                                    and standardization, as well as information organization and retrieval practices, technology, and applications, including computational processes for analyzing information in both textual and non-textual formats. Students
-                                    will learn how information organization and retrieval is carried out by professionals, authors, and users; by individuals in association with other individuals, and as part of the business processes in an enterprise
-                                    and across enterprises. This is a required introductory course for MIMS Master's students, integrating perspectives and best practices from a wide range of disciplines.
-
+                                <p> {{ review["review_text"] }}
                                 </p>
                             </div>
                         </div>
@@ -41,7 +39,7 @@
                             <div class="col s12">
                                 Reviewed by:
                                 <div class="chip">
-                                    <img src="{{ url_for('static', filename='person.jpeg') }}"> Random1
+                                     {{ review["user_id"] }}
                                 </div>
                             </div>
                         </div>
@@ -49,36 +47,43 @@
                 </div>
             </div>
         </div>
-
-        <div class="row">
-            <div class="col s12">
-                <div class="card">
-                    <div class="card-content">
-                        <div class="row">
-                            <div class="col s12">
-                                <p>Three hours of lecture and one hour of laboratory per week. Course must be completed for a letter grade to fulfill degree requirement. Technological foundations for computing and communications: computer architecture, operating
-                                    systems, networking, middleware, security. Programming paradigms: object oriented-design, design and analysis of algorithms, data structures, formal languages. Distributed-system architectures and models, inter-process
-                                    communications, concurrency, system performance.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card-action">
-                        <div class="row">
-                            <div class="col s12">
-                                Reviewed by:
-                                <div class="chip">
-                                    <img src="{{ url_for('static', filename='person.jpeg') }}"> Random2
-                                </div>
-                            </div>
-                        </div>
+        {% endfor %}
+        {% else %}
+            <div class="section white-4">
+                <div class="container">
+                    <div class="col s12">
+                        <h5> There are no reviews for this course! </h5>
                     </div>
                 </div>
             </div>
-        </div>
-
+        {% endif %}
         <br><br>
+        <!-- Add a Review -->
+        <hr><br>
+        <h5>Please add a review for this course!</h5>
+        <br>
+        <form id="add-review" action="add-review" method="POST">
+            <div class="row">
+                <div class="col s12">
+                    <div class="card">
+                        <div class="card-content grey lighten-5">
+                            <div class="row">
+                                <div class="col s12 m10">
+                                    <input placeholder="Your review" id="review" name="review" type="text" class="validate">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-action grey lighten-5">
+                            <a id="btn-add-review">Add Review</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <br><br> 
+        <!-- End Add a Review -->
     </div>
 </div>
-<!-- End Course List -->
+<!-- End Reviews -->
 
 {% endblock %}

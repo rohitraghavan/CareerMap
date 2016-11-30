@@ -21,3 +21,27 @@ $(".btn-add-rating").on("click", function() {
   $(this).parent().parent().parent().submit();
 
 })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+$("#btn-add-review").on("click", function() {
+  $("#add-review").submit();
+>>>>>>> 7896be372b4282c73ba10a46c7d6b39621683eba
+
+})

@@ -56,14 +56,16 @@
                 <div class="card">
                     <div class="card-content">
                         <div class="row">
-                            <div id="course_ref" value="{{ course[" course_ref "] }}"></div>
+                          <form id="add-rating" action="add-rating" method="POST">
+                            <input type="hidden" class="course_ref" name="course_ref" value="{{ course["course_ref"] }}">
                             <div class="col s12 m10">
                                 <span class="card-title">{{ course["course_id"] }}. {{ course["course_name"]}}</span>
                                 <p>Instructor(s): {{ course["instructor"] }}</p>
                             </div>
                             <div class="col s12 m2 right-align">
-                                <h5>{{ course["ratings"] }} <i class="small material-icons waves-effect">thumb_up</i></h5>
+                              <h5>{{ course["ratings"] }} <a class="btn-add-rating small material-icons waves-effect">thumb_up</a></h5>
                             </div>
+                          </form>
                         </div>
                     </div>
                     <div class="card-action">

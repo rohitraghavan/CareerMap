@@ -21,9 +21,20 @@ def retrieve_courses(concentration_name):
         con.row_factory = sql.Row
         cur = con.cursor()
         courses = cur.execute(
-            "SELECT * FROM courses_per_concentration_vw WHERE concentration_name = '" + concentration_name + "'").fetchall()
+            "SELECT * FROM course_ratings_vw WHERE concentration_name = '" + concentration_name + "' ORDER BY ratings DESC").fetchall()
     return courses
 
+def retrieve_course_ref(concentration_name, course_id, course_name, instructor):
+    '''
+    Retreive course ref under the concentration
+    '''
+    with sql.connect("career-map.db") as con:
+        con.execute('pragma foreign_keys = ON')
+        con.row_factory = sql.Row
+        cur = con.cursor()
+        course_ref = cur.execute(
+            "SELECT course_ref FROM courses WHERE course_id = '" + course_id + "' AND course_name = '" + course_name + "' AND instructor = '" + instructor + "'").fetchone()[0]
+    return course_ref
 
 def insert_course(concentration_name, course_id, course_name, instructor):
     '''
@@ -43,7 +54,6 @@ def insert_course(concentration_name, course_id, course_name, instructor):
                     (course_ref, concentration_name))
         con.commit()
 
-
 def insert_review(ref, user, review):
     '''
     Add review for the course to the database
@@ -53,6 +63,18 @@ def insert_review(ref, user, review):
         cur = con.cursor()
         cur.execute(
             "INSERT INTO course_reviews (ref, user_id, review_text) VALUES (?, ?, ?)", (ref, user, review))
+        con.commit()
+
+def insert_rating(course_ref, user_id, concentration_name):
+    '''
+    Add rating for the course to the database
+    '''
+    print(course_ref, user_id, concentration_name)
+    with sql.connect("career-map.db") as con:
+        con.execute('pragma foreign_keys = ON')
+        cur = con.cursor()
+        cur.execute(
+            "INSERT INTO course_ratings (course_ref, user_id, concentration_name) VALUES (?, ?, ?)", (course_ref, user_id, concentration_name))
         con.commit()
 
 # def retrieve_review():

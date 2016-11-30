@@ -16,3 +16,8 @@ $("#btn-add-course").on("click", function() {
   $("#add-course").submit();
 
 })
+
+$(".btn-add-rating").on("click", function() {
+  $(this).parent().parent().parent().submit();
+
+})

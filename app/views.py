@@ -89,9 +89,7 @@ def add_rating():
         user_id = escape(session["username"])
         course_ref = request.form["course_ref"]
         models.insert_rating(course_ref, user_id, concentration_name)
-        courses = models.retrieve_courses(concentration_name)
-        return render_template("index.html", user=current_user, courses=courses, concentration_name=concentration_name)
-
+        return render_template("index.html", user=user_id, concentration_name=concentration_name)
 
 
 @app.route("/select-concentration", methods=["POST"])

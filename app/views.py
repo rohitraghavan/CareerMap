@@ -113,7 +113,7 @@ def review(value):
     reviews = models.retrieve_review(value)
     return render_template("review.html", name=get_course[0], user=current_user, reviews=reviews)
 
-@app.route("/add-review/<value>", methods=["POST"])
+@app.route("/add-review", methods=["POST"])
 def add_review(value):
     '''
     Adds a review input by the user to the database

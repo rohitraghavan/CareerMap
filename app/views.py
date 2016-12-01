@@ -1,6 +1,6 @@
 from app import app, models, db
 from .models import *
-from flask import render_template, Flask, redirect, url_for, session, request, escape
+from flask import render_template, Flask, redirect, url_for, session, request, escape, g
 #from flask_oauthlib.client import OAuth
 
 
@@ -106,25 +106,27 @@ def select_concentration():
 
 @app.route("/review/<value>")
 def review(value):
+    session['value'] = value
     get_course = models.retrieve_name(value)
+    print(get_course)
     #if request.method == "POST":
         # concentration_name = request.form["concentration-name"]
     current_user = escape(session["username"])
     reviews = models.retrieve_review(value)
-    return render_template("review.html", name=get_course[0], user=current_user, reviews=reviews)
+    return render_template("review.html", name=get_course[0], user=current_user, reviews=reviews, value=value)
 
-@app.route("/add-review", methods=["POST"])
-def add_review(value):
+@app.route("/review/add-review", methods=["GET","POST"])
+def add_review():
     '''
     Adds a review input by the user to the database
     '''
+    value = session['value']
     if request.method == "POST":
-        concetration_name = request.form["concentration-name-add"]
-        course_id = request.form["course_id"]
-        course_name = request.form["course_name"]
-        instructor = request.form["instructor"]
-        models.insert_course(concetration_name, course_id,
-                             course_name, instructor)
+        print("posting!")
+        # concetration_name = request.form["concentration-name-add"]
+        current_user = escape(session["username"])
+        review = request.form["review"]
+        models.insert_review(value, current_user, review)
     return redirect("review")
 
 

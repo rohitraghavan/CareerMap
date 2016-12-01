@@ -54,16 +54,6 @@ def insert_course(concentration_name, course_id, course_name, instructor):
                     (course_ref, concentration_name))
         con.commit()
 
-def insert_review(ref, user, review):
-    '''
-    Add review for the course to the database
-    '''
-    with sql.connect("career-map.db") as con:
-        con.execute('pragma foreign_keys = ON')
-        cur = con.cursor()
-        cur.execute(
-            "INSERT INTO course_reviews (ref, user_id, review_text) VALUES (?, ?, ?)", (ref, user, review))
-        con.commit()
 
 def insert_rating(course_ref, user_id, concentration_name):
     '''
@@ -77,7 +67,17 @@ def insert_rating(course_ref, user_id, concentration_name):
             "INSERT INTO course_ratings (course_ref, user_id, concentration_name) VALUES (?, ?, ?)", (course_ref, user_id, concentration_name))
         con.commit()
 
-
+def insert_review(value, user_id, review):
+    '''
+    Add review for the course to the database
+    '''
+    with sql.connect("career-map.db") as con:
+        #con.execute('pragma foreign_keys = ON')
+        cur = con.cursor()
+        cur.execute(
+            "INSERT INTO course_reviews (course_ref, user_id, review_text) VALUES (?, ?, ?)", (value, user_id, review))
+        con.commit()
+        
 def retrieve_name(value):
     with sql.connect("career-map.db") as con:
         con.row_factory = sql.Row

@@ -127,7 +127,7 @@ def add_review():
         current_user = escape(session["username"])
         review = request.form["review"]
         models.insert_review(value, current_user, review)
-    return redirect("review")
+    return redirect("review/{}".format(value))
 
 
 # app.config.from_object("config")

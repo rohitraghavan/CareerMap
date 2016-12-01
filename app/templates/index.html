@@ -83,7 +83,17 @@
         <hr><br>
         <h5>Think we're missing a course? Add one!</h5>
         <br>
-        <form id="add-course" action="add-course" method="POST">
+            <script type="text/javascript">
+                function validateForm(){
+                    if(document.forms['Form'].course_name.value === "" || document.forms['Form'].course_id.value === "" || document.forms['Form'].instructor.value === "")
+                    {
+                        alert("Please make sure that all fields are filled.");
+                        return false;
+                    }
+                    return true;
+                }
+            </script>
+        <form id="add-course" name="Form" onsubmit="return validateForm()" action="add-course" method="POST">
             <div class="row">
                 <div class="col s12">
                     <div class="card">
@@ -105,7 +115,7 @@
                             </div>
                         </div>
                         <div class="card-action grey lighten-5">
-                            <a id="btn-add-review">Add Course</a>
+                            <a id="btn-add-course">Add Course</a>
                         </div>
                     </div>
                 </div>

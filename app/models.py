@@ -17,6 +17,7 @@ def retrieve_courses(concentration_name):
     '''
     Retreive courses under the concentration
     '''
+    print(concentration_name)
     with sql.connect("career-map.db") as con:
         con.row_factory = sql.Row
         cur = con.cursor()

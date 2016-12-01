@@ -13,6 +13,7 @@ $(".btn-concentration-name").on("click", function() {
 })
 
 $("#btn-add-course").on("click", function() {
+    console.log("click");
     $("#add-course").submit();
 
 })
@@ -22,8 +23,3 @@ $(".btn-add-rating").on("click", function() {
 
 })
 
-/*$("#btn-add-review").on("click", function() {
-    $("#add-review").submit();
-
-})
-*/

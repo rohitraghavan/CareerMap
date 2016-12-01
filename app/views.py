@@ -70,26 +70,31 @@ def add_course():
     Adds a course input by the user to the database
     '''
     if request.method == "POST":
-        concetration_name = request.form["concentration-name-add"]
+        concetration_name = escape(session["concentration_name"])
         course_id = request.form["course_id"]
         course_name = request.form["course_name"]
         instructor = request.form["instructor"]
         models.insert_course(concetration_name, course_id,
                              course_name, instructor)
-    return redirect("index")
+        return redirect("index")
 
 @app.route("/add-rating", methods=["POST"])
 def add_rating():
     '''
     Add a thumbs up by user to the database
     '''
-    print("hello python rating")
     if request.method == "POST":
+    #     concentration_name = escape(session["concentration_name"])
+    #     user_id = escape(session["username"])
+    #     course_ref = request.form["course_ref"]
+    #     models.insert_rating(course_ref, user_id, concentration_name)
+    #     return render_template("index.html", user=user_id)
         concentration_name = escape(session["concentration_name"])
-        user_id = escape(session["username"])
-        course_ref = request.form["course_ref"]
-        models.insert_rating(course_ref, user_id, concentration_name)
-        return render_template("index.html", user=user_id, concentration_name=concentration_name)
+        print("concentration name =" + concentration_name)
+        current_user = escape(session["username"])
+        courses = models.retrieve_courses(concentration_name)
+        # print(courses)
+        return render_template("index.html", user=current_user, concentration_name=concentration_name)
 
 
 @app.route("/select-concentration", methods=["POST"])

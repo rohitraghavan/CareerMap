@@ -21,7 +21,7 @@
     <!-- Nav bar header -->
     <nav class="blue darken-3" role="navigation">
         <div class="nav-wrapper">
-            <a id="logo-container" class="brand-logo" href="#"><img src="{{ url_for('static', filename='ischool-logo copy.png') }}"></a>
+            <a id="logo-container" class="brand-logo" href="/index"><img src="{{ url_for('static', filename='ischool-logo copy.png') }}"></a>
             {% if not login %}
             <ul class="right hide-on-med-and-down">
                 <li>Logged in as: {{ user }}</li>

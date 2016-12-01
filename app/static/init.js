@@ -22,7 +22,8 @@ $(".btn-add-rating").on("click", function() {
 
 })
 
-$("#btn-add-review").on("click", function() {
+/*$("#btn-add-review").on("click", function() {
     $("#add-review").submit();
 
 })
+*/

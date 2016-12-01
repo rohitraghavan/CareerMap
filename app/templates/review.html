@@ -56,7 +56,17 @@
         <hr><br>
         <h5>Please add a review for this course!</h5>
         <br>
-        <form id="add-review" action="add-review" method="POST">
+            <script type="text/javascript">
+                function validateForm(){
+                    if(document.forms['Form'].review.value === "")
+                    {
+                    alert("Your review is empty.");
+                    return false;
+                    }
+                return true;
+                }
+            </script>
+        <form id="add-review" name = "Form" action="add-review" onsubmit="return validateForm()" method="POST">
             <div class="row">
                 <div class="col s12">
                     <div class="card">

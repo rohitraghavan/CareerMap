@@ -23,3 +23,10 @@ $(".btn-add-rating").on("click", function() {
 
 })
 
+$("#btn-add-review").on("click", function() {
+    console.log("click");
+    $("#add-review").submit();
+
+})
+
+

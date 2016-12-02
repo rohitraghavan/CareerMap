@@ -120,9 +120,6 @@ def add_rating():
 def review(value):
     session['value'] = value
     get_course = models.retrieve_name(value)
-    print(get_course)
-    # if request.method == "POST":
-    # concentration_name = request.form["concentration-name"]
     current_user = escape(session["username"])
     reviews = models.retrieve_review(value)
     return render_template("review.html", name=get_course[0], user=current_user, reviews=reviews, value=value)
@@ -135,7 +132,7 @@ def add_review():
     '''
     value = session['value']
     if request.method == "POST":
-        print("posting!")
+        print("IT'S WORKING")
         # concetration_name = request.form["concentration-name-add"]
         current_user = escape(session["username"])
         review = request.form["review"]

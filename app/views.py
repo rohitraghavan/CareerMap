@@ -132,7 +132,6 @@ def add_review():
     '''
     value = session['value']
     if request.method == "POST":
-        print("IT'S WORKING")
         # concetration_name = request.form["concentration-name-add"]
         current_user = escape(session["username"])
         review = request.form["review"]

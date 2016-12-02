@@ -50,7 +50,7 @@ $("#btn-add-review").on("click", function() {
 
 //Validates Add Review form
 function validateAddReviewForm() {
-    if ($("#review").val() === "") {
+    if ($("#review").val() == "") {
         alert("Please add a review.");
         return false;
     }
@@ -59,8 +59,8 @@ function validateAddReviewForm() {
 
 //Validates Add Course form
 function validateAddCourseForm() {
-    if ($("#course_id").val() === "" || $("#course_name").val() === "" || $("#instructor").val() === "") {
-        alert("Please fill in all fields.");
+    if ($("#course_id_add").val() == "" || $("#course_name_add").val() == "") {
+        alert("Please fill in BOTH Course ID and Course Name fields.");
         return false;
     }
     return true;

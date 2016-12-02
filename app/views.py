@@ -95,9 +95,9 @@ def add_course():
     '''
     if request.method == "POST":
         concentration_name = escape(session["concentration_name"])
-        course_id = request.form["course_id"]
-        course_name = request.form["course_name"]
-        instructor = request.form["instructor"]
+        course_id = request.form["course_id_add"]
+        course_name = request.form["course_name_add"]
+        instructor = request.form["instructor_add"]
         models.insert_course(concentration_name, course_id,
                              course_name, instructor)
         return display_concentration_courses(concentration_name)

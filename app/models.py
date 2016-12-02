@@ -17,7 +17,6 @@ def retrieve_courses(concentration_name):
     '''
     Retreive courses under the concentration
     '''
-    print(concentration_name)
     with sql.connect("career-map.db") as con:
         con.row_factory = sql.Row
         cur = con.cursor()
@@ -68,6 +67,19 @@ def insert_rating(course_ref, user_id, concentration_name):
             "INSERT INTO course_ratings (course_ref, user_id, concentration_name) VALUES (?, ?, ?)", (course_ref, user_id, concentration_name))
         con.commit()
 
+def redirect_courses(concentration_name):
+    '''
+    Retreive courses under the concentration
+    '''
+    with sql.connect("career-map.db") as con:
+        con.row_factory = sql.Row
+        cur = con.cursor()
+        concentration_name = str(concentration_name)
+        courses = cur.execute(
+            "SELECT course_id FROM course_ratings_vw WHERE concentration_name = '" + concentration_name + "' ORDER BY ratings DESC").fetchall()
+    return courses
+
+
 def insert_review(value, user_id, review):
     '''
     Add review for the course to the database
@@ -78,7 +90,7 @@ def insert_review(value, user_id, review):
         cur.execute(
             "INSERT INTO course_reviews (course_ref, user_id, review_text) VALUES (?, ?, ?)", (value, user_id, review))
         con.commit()
-        
+
 def retrieve_name(value):
     with sql.connect("career-map.db") as con:
         con.row_factory = sql.Row

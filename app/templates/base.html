@@ -4,54 +4,57 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0" />
-    <title>iSchool Career Map Home</title>
+    <title>iSchool Career Map</title>
 
     <!-- CSS  -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link href="{{ url_for('static', filename='materialize.min.css') }}" type="text/css" rel="stylesheet" media="screen,projection" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/css/materialize.min.css">
     <link href="{{ url_for('static', filename='style.css') }}" type="text/css" rel="stylesheet" media="screen,projection" />
-
-    <script
-  src="https://code.jquery.com/jquery-3.1.1.js"
-  integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA="
-  crossorigin="anonymous"></script>
 </head>
 
 <body>
     <!-- Nav bar header -->
-    <nav class="blue darken-3" role="navigation">
+    <nav class="white" role="navigation">
         <div class="nav-wrapper">
-            <a id="logo-container" class="brand-logo" href="/index"><img src="{{ url_for('static', filename='ischool-logo copy.png') }}"></a>
+            <a id="logo-container" class="brand-logo center" href="/index"><img src="{{ url_for('static', filename='berkeleyischool-logo-blue.jpg') }}"></a>
             {% if not login %}
             <ul class="right hide-on-med-and-down">
-                <li>Logged in as: {{ user }}</li>
-                <li><a class="btn waves-effect waves-light" href="logout">SIGN OUT</a></li>
+                <li class="red-text">Logged in as: {{ user }}&nbsp;</li>
+                <li><a class="waves-effect waves-light btn-large red white-text" href="logout">Sign Out</a></li>
             </ul>
 
             <ul id="nav-mobile" class="side-nav">
-                <li><a class="btn waves-effect waves-light" href="logout">SIGN OUT</a></li>
+                <li class="red-text">Logged in as: {{ user }}&nbsp;</li>
+                <li><a class="waves-effect waves-light btn red white-text" href="logout">Sign Out</a></li>
             </ul>
-            <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
-            {% endif %}
+            <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons red-text">menu</i></a> {% endif %}
         </div>
     </nav>
+    <!-- End Nav bar header -->
 
     {% block content %} {% endblock %}
 
-    <!-- Footer -->
-    <footer class="page-footer blue darken-3">
+    <!-- Footer section -->
+    <footer class="page-footer red lighten-2">
         <div class="container">
             <div class="row">
                 <div class="col s12">
-                    <p class="grey-text text-lighten-4">Made by IOLabbers - Ed, Mud, Liz and Ro</p>
+                    <h5 class="white-text">About Us</h5>
+                    <p class="grey-text text-lighten-4">We are a team of IO Lab students who want to help YOU select courses relevant for your future career.</p>
                 </div>
             </div>
+        </div>
+        <div class="footer-copyright">
+            <div class="container">
+                Made by IOLabbers Liz, Ed, Mud and Ro</a>
+            </div>
+        </div>
     </footer>
-
+    <!-- End Footer section -->
 
     <!--  Scripts-->
     <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-    <script src="{{ url_for('static', filename='materialize.min.js') }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/js/materialize.min.js"></script>
     <script src="{{ url_for('static', filename='init.js') }}"></script>
 </body>
 

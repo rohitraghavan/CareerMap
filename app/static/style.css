@@ -8,6 +8,45 @@
  * Made By MaterializeCSS.com
  */
 
+nav ul a, nav .brand-logo {
+    color: #444;
+}
+
+p {
+    line-height: 2rem;
+}
+
+.button-collapse {
+    color: #26a69a;
+}
+
+.parallax-container {
+    min-height: 380px;
+    line-height: 0;
+    height: auto;
+    color: rgba(255, 255, 255, .9);
+}
+
+.parallax-container .section {
+    width: 100%;
+}
+
+@media only screen and (max-width: 992px) {
+    .parallax-container .section {
+        position: absolute;
+        top: 40%;
+    }
+    #index-banner .section {
+        top: 10%;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    #index-banner .section {
+        top: 0;
+    }
+}
+
 .icon-block {
     padding: 0 15px;
 }
@@ -16,42 +55,97 @@
     font-size: inherit;
 }
 
+footer.page-footer {
+    margin: 0;
+}
+
 
 /* Career Map Customizations start here */
 
 .brand-logo>img {
-    padding-left: 8px;
-    padding-top: 8px;
+    padding-left: 4px;
+    padding-top: 4px;
+    width: 315px;
+    height: auto;
 }
 
-.col>.btn-large {
+.bg-image {
+    opacity: 0.3;
+}
+
+.parallax-container {
+    min-height: 420px;
+}
+
+.btn-concentration-name {
     width: 100%;
     margin-bottom: 5px;
 }
 
-footer.page-footer {
-    padding-top: 0px;
+#btn-add-course {
+    color: red !important;
 }
 
-#bg-image {
-    opacity: 0.3;
+.btn-reviews {
+    color: red !important;
 }
 
-.title {
-    font-weight: bolder;
+#btn-add-review {
+    color: red !important;
 }
 
-.navbar-login {
-    margin-top: 5px;
-    margin-right: 6px;
-    cursor: pointer;
-    height: 50px;
+.review-parallax-container {
+    min-height: 360px;
 }
 
-#login-image {
-    height: 600px;
+
+/* change form input color */
+
+.input-field label {
+    color: red;
 }
 
-.bg-image-review {
-    height: 200px;
+.input-field input[type=text]:focus+label {
+    color: red;
+}
+
+.input-field input[type=text]:focus {
+    border-bottom: 1px solid red;
+    box-shadow: 0 1px 0 0 red;
+}
+
+.input-field input[type=text].valid {
+    border-bottom: 1px solid red;
+    box-shadow: 0 1px 0 0 red;
+}
+
+.input-field input[type=text].invalid {
+    border-bottom: 1px solid red;
+    box-shadow: 0 1px 0 0 red;
+}
+
+.input-field .prefix.active {
+    color: red;
+}
+
+
+/* change form text area color */
+
+.input-field textarea[type=text]:focus+label {
+    color: red;
+}
+
+.input-field textarea[type=text]:focus {
+    border-bottom: 1px solid red;
+    box-shadow: 0 1px 0 0 red;
+}
+
+.input-field textarea[type=text].valid {
+    border-bottom: 1px solid red;
+    box-shadow: 0 1px 0 0 red;
+}
+
+.input-field textarea[type=text].invalid {
+    border-bottom: 1px solid red;
+    box-shadow: 0 1px 0 0 red;
 }

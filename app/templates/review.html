@@ -1,28 +1,22 @@
 {% extends "base.html" %} {% block content %}
 
 <!-- Main section -->
-<div class="parallax-container bg-image-review">
-    <div id="bg-image" class="parallax">
-        <img src="{{ url_for('static', filename='courses.jpg') }}" alt="" style="display: block; transform: translate3d(-50%, 34px, 0px);">
-    </div>
-
-    <!-- Main heading -->
-    <div class="container">
-        <br>
-        <div class="row center title">
-            <h2 class="header center blue-text text-darken-2">{{ name[0] }}. {{ name[1] }} 
-            </h2>
+<div id="index-banner" class="parallax-container review-parallax-container">
+    <div class="section no-pad-bot">
+        <div class="container">
+            <h1 class="header center red-text text-darken-1">{{ course_id }}. {{ course_name }}</h1>
         </div>
     </div>
+    <div class="parallax"><img src="{{ url_for('static', filename='background4.jpg') }}" class="bg-image bg-image-review"></div>
 </div>
 <!-- End Main section -->
 
 
-<!-- Reviews -->
 <div class="section grey lighten-4">
     <div class="container">
-    {% if reviews %}
-    {% for review in reviews %}
+
+        <!-- Reviews -->
+        {% if reviews %} {% for review in reviews %}
         <div class="row">
             <div class="col s12">
                 <div class="card">
@@ -39,7 +33,7 @@
                             <div class="col s12">
                                 Reviewed by:
                                 <div class="chip">
-                                     {{ review["user_id"] }}
+                                    {{ review["user_id"] }}
                                 </div>
                             </div>
                         </div>
@@ -47,33 +41,26 @@
                 </div>
             </div>
         </div>
-        {% endfor %}
-        {% else %}           
-            <h5> There are no reviews for this course! </h5>
-        {% endif %}
+        {% endfor %} {% else %}
+        <h5> There are no reviews for this course! </h5> {% endif %}
         <br><br>
+        <!-- End Reviews -->
+
         <!-- Add a Review -->
         <hr><br>
         <h5>Please add a review for this course!</h5>
         <br>
-            <script type="text/javascript">
-                function validateForm(){
-                    if(document.forms['Form'].review.value === "")
-                    {
-                    alert("Your review is empty.");
-                    return false;
-                    }
-                return true;
-                }
-            </script>
-        <form id="add-review" name = "Form" action="add-review" onsubmit="return validateForm()" method="POST">
+        <form id="add-review" name="add-review" action="add-review" onsubmit="return validateAddReviewForm()" method="POST">
+            <input type="hidden" name="course_ref" id="course_ref" value="{{ course_ref }}">
+            <input type="hidden" name="course_id" id="course_id" value="{{ course_id }}">
+            <input type="hidden" name="course_name" id="course_name" value="{{ course_name }}">
             <div class="row">
                 <div class="col s12">
                     <div class="card">
                         <div class="card-content grey lighten-5">
                             <div class="row">
-                                <div class="col s12 m10">
-                                    <textarea placeholder="Your review" id="review" name="review" type="text" class="validate"></textarea>
+                                <div class="input-field col s12">
+                                    <textarea placeholder="Your review" id="review" name="review" type="text" class="materialize-textarea validate"></textarea>
                                 </div>
                             </div>
                         </div>
@@ -84,10 +71,11 @@
                 </div>
             </div>
         </form>
-        <br><br> 
+        <br><br>
         <!-- End Add a Review -->
+
     </div>
 </div>
-<!-- End Reviews -->
+
 
 {% endblock %}

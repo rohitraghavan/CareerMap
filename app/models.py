@@ -56,6 +56,7 @@ def insert_rating(course_ref, user_id, concentration_name):
     '''
     Add rating for the course to the database
     '''
+    print(course_ref, user_id, concentration_name)
     with sql.connect("career-map.db") as con:
         con.execute('pragma foreign_keys = ON')
         cur = con.cursor()
@@ -64,7 +65,7 @@ def insert_rating(course_ref, user_id, concentration_name):
         con.commit()
 
 
-def insert_review(value, user_id, review):
+def insert_review(course_ref, user_id, review):
     '''
     Add review for the course to the database
     '''
@@ -72,24 +73,17 @@ def insert_review(value, user_id, review):
         #con.execute('pragma foreign_keys = ON')
         cur = con.cursor()
         cur.execute(
-            "INSERT INTO course_reviews (course_ref, user_id, review_text) VALUES (?, ?, ?)", (value, user_id, review))
+            "INSERT INTO course_reviews (course_ref, user_id, review_text) VALUES (?, ?, ?)", (course_ref, user_id, review))
         con.commit()
 
 
-def retrieve_name(value):
-    with sql.connect("career-map.db") as con:
-        con.row_factory = sql.Row
-        cur = con.cursor()
-        get_course = cur.execute(
-            "SELECT course_id, course_name FROM courses WHERE course_ref = '" + value + "'").fetchall()
-    return get_course
-
-
-def retrieve_review(value):
-    # display review retrieved from table course_review_vw
+def retrieve_reviews(course_ref):
+    '''
+    Retrieves course reviews for course_ref passed in input
+    '''
     with sql.connect("career-map.db") as con:
         con.row_factory = sql.Row
         cur = con.cursor()
         reviews = cur.execute(
-            "SELECT * FROM course_reviews WHERE course_ref = '" + value + "'").fetchall()
+            "SELECT * FROM course_reviews WHERE course_ref = ?", (course_ref, )).fetchall()
     return reviews

@@ -14,6 +14,8 @@ def index():
     current_user = ""
     if "username" in session:
         current_user = escape(session["username"])
+        session["concentration_name"] = ""
+        session.pop("concentration_name")
         return render_template("index.html", user=current_user)
     else:
         return redirect("login")
@@ -54,12 +56,13 @@ def authenticate_user(username):
     return False
 
 
-@app.route("/logout", methods=["GET", "POST"])
+@app.route("/logout")
 def logout():
     '''
     Logs the user out and redirects to login page
     '''
     session.pop("username")
+    session["concentration_name"] = ""
     session.pop("concentration_name")
     return redirect("login")
 
@@ -72,7 +75,6 @@ def select_concentration():
     '''
     if request.method == "POST":
         concentration_name = escape(request.form["concentration-name"])
-        print(concentration_name)
         session["concentration_name"] = concentration_name
         return display_concentration_courses(concentration_name)
 
@@ -83,8 +85,6 @@ def display_concentration_courses(concentration_name):
     '''
     current_user = escape(session["username"])
     courses = models.retrieve_courses(concentration_name)
-    for course in courses:
-        print(course["course_name"])
     return render_template("index.html", user=current_user, concentration_name=concentration_name, courses=courses)
 
 
@@ -116,24 +116,35 @@ def add_rating():
         return display_concentration_courses(concentration_name)
 
 
-@app.route("/review/<value>")
-def review(value):
-    session['value'] = value
-    get_course = models.retrieve_name(value)
+def display_reviews(course_ref, course_id, course_name):
+    '''
+    Displays reviews for the course
+    '''
     current_user = escape(session["username"])
-    reviews = models.retrieve_review(value)
-    return render_template("review.html", name=get_course[0], user=current_user, reviews=reviews, value=value)
+    reviews = models.retrieve_reviews(course_ref)
+    return render_template("review.html", user=current_user, course_ref=course_ref, course_id=course_id, course_name=course_name, reviews=reviews)
 
 
-@app.route("/review/add-review", methods=["GET", "POST"])
+@app.route("/reviews", methods=["POST"])
+def reviews():
+    if request.method == "POST":
+        course_ref = request.form["course_ref"]
+        course_id = request.form["course_id"]
+        course_name = request.form["course_name"]
+        reviews = models.retrieve_reviews(course_ref)
+        return display_reviews(course_ref, course_id, course_name)
+
+
+@app.route("/add-review", methods=["GET", "POST"])
 def add_review():
     '''
     Adds a review input by the user to the database
     '''
-    value = session['value']
     if request.method == "POST":
-        # concetration_name = request.form["concentration-name-add"]
         current_user = escape(session["username"])
         review = request.form["review"]
-        models.insert_review(value, current_user, review)
-    return redirect("review/{}".format(value))
+        course_ref = request.form["course_ref"]
+        course_id = request.form["course_id"]
+        course_name = request.form["course_name"]
+        models.insert_review(course_ref, current_user, review)
+    return display_reviews(course_ref, course_id, course_name)

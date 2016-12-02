@@ -1,66 +1,70 @@
 {% extends "base.html" %} {% block content %}
 
-<!-- Main section -->
-<div id="login-image" class="parallax-container">
-    <div id="bg-image" class="parallax">
-        <img src="{{ url_for('static', filename='south-hall1.jpg') }}" alt="" style="display: block; transform: translate3d(-50%, 34px, 0px);">
-    </div>
+<!-- Parallax image -->
+<div id="index-banner" class="parallax-container">
+    <div class="parallax"><img src="{{ url_for('static', filename='background1.jpg') }}"></div>
+</div>
 
-    <!-- Main heading -->
-    <div class="container">
-        <br><br><br><br><br><br><br><br><br>
-        <div class="row center title">
-            <h1 class="header center blue-text text-darken-2">Welcome to iSchool Career Map!</h1>
-            <h5 class="header col s12 gray-text text-darken-4">We help you select classes based on your area of interest</h5>
-        </div>
-        <div class="row center">
-
-            <!-- Remove once Linkedin login is implemented -->
-            <form action="authenticate-login" method="POST">
-                <div class="input-field col s12">
-                    <input placeholder="Batman" id="username" name="username" type="text" class="validate">
-                    <label for="username">Login Name</label>
-                </div>
-                <br>
-                <!-- End Remove once Linkedin login is implemented -->
-
-                <div id="login-buttons" class="login-buttons-dropdown-align-">
-                    <div class="login-buttons-with-only-one-button">
-                        <button><img src="{{ url_for('static', filename='Sign-In-Large---Active.png') }}" class="login-button btn-Linkedin navbar-login"></button>
+<!--   Login Section   -->
+<div class="container">
+    <div class="section">
+        <form id="authenticate-login" action="authenticate-login" method="POST">
+            <div class="row">
+                <div class="col s12">
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <input placeholder="Login name" id="username" name="username" type="text" class="validate">
+                            <label for="username">Login Name</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s12 center">
+                            <button class="btn waves-effect waves-light red submit" type="submit" name="action">Login
+                                <i class="material-icons right">send</i>
+                            </button>
+                        </div>
                     </div>
                 </div>
-            </form>
-        </div>
+            </div>
+        </form>
     </div>
-    <br>
 </div>
-<!-- End Main section -->
+<br><br><br>
 
-<!-- Details -->
+<!-- Parallax image -->
+<div class="parallax-container valign-wrapper">
+    <div class="parallax"><img src="{{ url_for('static', filename='background2.jpg') }}"></div>
+</div>
+
+<!-- How does this work Section -->
 <div class="container">
-    <br><br>
-    <div class="row">
-        <div class="col s12 m4">
-            <h5 class="center">What is Career Map?</h5>
-            <p class="light">
-                Career Map is a project by a group of MIMS students to bridge the gap between intended future careers of iSchoolers and the selection of appropriate courses that will lead to them. We realise that course selection can be really hard, so we'd like to ease
-                the process by collecting course ratings and reviews by current and past students.
-            </p>
-        </div>
-        <div class="col s12 m4">
-            <h5 class="center">Why "Sign in with Linkedin"?</h5>
-            <p class="light">
-                We want to ensure the quality of the ratings and reviews. We believe that we can minimize bad behavior by ensuring that everyone's activities are tied to their professional identity on Linkedin.
-            </p>
-        </div>
-        <div class="col s12 m4">
-            <h5 class="center">What do you do with the Linkedin data?</h5>
-            <p class="light">
-                Yackle only accesses your profile information (name, title, profile pic, etc.) and email address. We don't do anything with your data other than simply display it to our members. We don't sell your data, or use it for targetting / ads etc.
-            </p>
+    <div class="section">
+        <div class="row">
+            <div class="col s12 m4">
+                <div class="icon-block">
+                    <h2 class="center red-text"><i class="material-icons">info</i></h2>
+                    <h5 class="center">What is Career Map?</h5>
+                    <p class="light">Career Map is an application to bridge the gap between future careers of iSchoolers and courses relevant to those careers . We realise that course selection can be really hard, so we built an app that were you can rate and review courses
+                        listed by career concentration.</p>
+                </div>
+            </div>
+            <div class="col s12 m4">
+                <div class="icon-block">
+                    <h2 class="center red-text"><i class="material-icons">vpn_key</i></h2>
+                    <h5 class="center">Why "Sign in with Linkedin"?</h5>
+                    <p class="light">We want to ensure the quality of ratings and reviews. We believe that we can minimize bad behavior by ensuring that everyone's activities are tied to their professional identity on Linkedin.</p>
+                </div>
+            </div>
+            <div class="col s12 m4">
+                <div class="icon-block">
+                    <h2 class="center red-text"><i class="material-icons">assignment_ind</i></h2>
+                    <h5 class="center">What do you do with Linkedin data?</h5>
+                    <p class="light">We only accesses your profile information (name, title, profile pic, etc.) and email address. We don't do anything with your data other than simply display it to our members. We don't sell your data, or use it for ads etc.</p>
+                </div>
+            </div>
         </div>
     </div>
 </div>
-<!-- End Details -->
+
 
 {% endblock %}

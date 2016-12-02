@@ -64,6 +64,30 @@ def logout():
     return redirect("login")
 
 
+@app.route("/select-concentration", methods=["POST"])
+def select_concentration():
+    '''
+    Gets the selected concentration from the from and calls method to display
+    a list of courses under the selected concentration
+    '''
+    if request.method == "POST":
+        concentration_name = escape(request.form["concentration-name"])
+        print(concentration_name)
+        session["concentration_name"] = concentration_name
+        return display_concentration_courses(concentration_name)
+
+
+def display_concentration_courses(concentration_name):
+    '''
+    Displays a list of courses under the selected concentration
+    '''
+    current_user = escape(session["username"])
+    courses = models.retrieve_courses(concentration_name)
+    for course in courses:
+        print(course["course_name"])
+    return render_template("index.html", user=current_user, concentration_name=concentration_name, courses=courses)
+
+
 @app.route("/add-course", methods=["POST"])
 def add_course():
     '''
@@ -76,12 +100,8 @@ def add_course():
         instructor = request.form["instructor"]
         models.insert_course(concentration_name, course_id,
                              course_name, instructor)
-        # courses = models.redirect_courses(concentration_name)
-        # user_id = escape(session["username"])
-        # course_ref = request.form["course_ref"]
-        # models.insert_rating(course_ref, user_id, concentration_name)
-        # return render_template("index.html", user=user_id, courses=courses, concentration_name=concentration_name)
-        return redirect("index")
+        return display_concentration_courses(concentration_name)
+
 
 @app.route("/add-rating", methods=["POST"])
 def add_rating():
@@ -90,38 +110,25 @@ def add_rating():
     '''
     if request.method == "POST":
         concentration_name = escape(session["concentration_name"])
-        courses = models.redirect_courses(concentration_name)
         user_id = escape(session["username"])
         course_ref = request.form["course_ref"]
         models.insert_rating(course_ref, user_id, concentration_name)
-        # return render_template("index.html", user=user_id)
-        return render_template("index.html", user=user_id, courses=courses, concentration_name=concentration_name)
+        return display_concentration_courses(concentration_name)
 
-
-@app.route("/select-concentration", methods=["POST"])
-def select_concentration():
-    '''
-    Displays a list of courses under the selected concentration
-    '''
-    if request.method == "POST":
-        concentration_name = request.form["concentration-name"]
-        session["concentration_name"] = concentration_name
-        current_user = escape(session["username"])
-        courses = models.retrieve_courses(concentration_name)
-        return render_template("index.html", user=current_user, courses=courses, concentration_name=concentration_name)
 
 @app.route("/review/<value>")
 def review(value):
     session['value'] = value
     get_course = models.retrieve_name(value)
     print(get_course)
-    #if request.method == "POST":
-        # concentration_name = request.form["concentration-name"]
+    # if request.method == "POST":
+    # concentration_name = request.form["concentration-name"]
     current_user = escape(session["username"])
     reviews = models.retrieve_review(value)
     return render_template("review.html", name=get_course[0], user=current_user, reviews=reviews, value=value)
 
-@app.route("/review/add-review", methods=["GET","POST"])
+
+@app.route("/review/add-review", methods=["GET", "POST"])
 def add_review():
     '''
     Adds a review input by the user to the database
@@ -134,22 +141,3 @@ def add_review():
         review = request.form["review"]
         models.insert_review(value, current_user, review)
     return redirect("review/{}".format(value))
-
-
-# app.config.from_object("config")
-# oauth = OAuth()
-#
-# linkedin = oauth.remote_app(
-# 	'linkedIn',
-# 	consumer_key='86faisvke7rqht',
-# 	consumer_secret='vfywuq3lwEUUqzU2',
-# 	request_token_params={
-# 		'scope': 'r_basicprofile',
-# 		'state': 'RandomString',
-# 	},
-# 	base_url='https://api.linkedin.com/v1/',
-# 	request_token_url=None,
-# 	access_token_method='POST',
-# 	access_token_url='https://www.linkedin.com/uas/oauth2/accessToken',
-# 	authorize_url='https://www.linkedin.com/uas/oauth2/authorization',
-# )

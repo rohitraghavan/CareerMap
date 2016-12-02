@@ -3,6 +3,15 @@
     $(function() {
         $(".button-collapse").sideNav();
         $(".parallax").parallax();
+        //Marks concentration button as selected if a concentration is selected
+        concentration_name = $("#concentration-name").val();
+        if (concentration_name != "") {
+            var foundin = $('.btn-concentration-name:contains(' + concentration_name + ')');
+            foundin.removeClass("red-text");
+            foundin.removeClass("white");
+            foundin.addClass("white-text");
+            foundin.addClass("red");
+        }
     });
 })(jQuery);
 
@@ -41,7 +50,7 @@ $("#btn-add-review").on("click", function() {
 
 //Validates Add Review form
 function validateAddReviewForm() {
-    if ($("#review")[0].value === "") {
+    if ($("#review").val() === "") {
         alert("Please add a review.");
         return false;
     }
@@ -50,7 +59,7 @@ function validateAddReviewForm() {
 
 //Validates Add Course form
 function validateAddCourseForm() {
-    if ($("#course_id")[0].value === "" || $("#course_name")[0].value === "" || $("#instructor")[0].value === "") {
+    if ($("#course_id").val() === "" || $("#course_name").val() === "" || $("#instructor").val() === "") {
         alert("Please fill in all fields.");
         return false;
     }

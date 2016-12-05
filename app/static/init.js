@@ -65,3 +65,35 @@ function validateAddCourseForm() {
     }
     return true;
 }
+
+//Linkedin Login Code
+function OnLinkedInFrameworkLoad() {
+    IN.Event.on(IN, "auth", OnLinkedInAuth);
+}
+
+function OnLinkedInAuth() {
+    IN.API.Profile("me").result(LoginUser);
+}
+
+function LoginUser(profiles) {
+    var member = profiles.values[0];
+    var userId = member.id;
+    var firstName = member.firstName;
+    var lastName = member.lastName;
+    var photo = member.pictureUrl;
+    console.log("Welcome", firstName);
+    $("#user-id").val(userId);
+    $("#first-name").val(firstName);
+    $("#last-name").val(lastName);
+    $("#photo").val(photo);
+    $("#authenticate-login").submit();
+
+}
+
+//Linkedin Logout code
+$(".btn-logout").on("click", function() {
+    if (IN.User.isAuthorized() == true) {
+        console.log("Goodbye")
+        IN.User.logout();
+    }
+})

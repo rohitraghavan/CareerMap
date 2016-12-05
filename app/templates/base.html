@@ -10,6 +10,14 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/css/materialize.min.css">
     <link href="{{ url_for('static', filename='style.css') }}" type="text/css" rel="stylesheet" media="screen,projection" />
+
+    <!-- Linkedin login stuff -->
+    <script type="text/javascript" src="http://platform.linkedin.com/in.js">
+        api_key: 86hjrklrkqr5im
+        onLoad: OnLinkedInFrameworkLoad
+        authorize: true
+    </script>
+
 </head>
 
 <body>
@@ -19,13 +27,21 @@
             <a id="logo-container" class="brand-logo center" href="/index"><img src="{{ url_for('static', filename='berkeleyischool-logo-blue.jpg') }}"></a>
             {% if not login %}
             <ul class="right hide-on-med-and-down">
-                <li class="red-text">Logged in as: {{ user }}&nbsp;</li>
-                <li><a class="waves-effect waves-light btn-large red white-text" href="logout">Sign Out</a></li>
+                <li class="black-text">
+                    <div class="chip">
+                        <img src="{{ photo }}" alt="Contact Person"> {{ first_name }}
+                    </div>
+                </li>
+                <li><a class="btn-logout waves-effect waves-light btn-large red white-text" href="logout">Sign Out</a></li>
             </ul>
 
             <ul id="nav-mobile" class="side-nav">
-                <li class="red-text">Logged in as: {{ user }}&nbsp;</li>
-                <li><a class="waves-effect waves-light btn red white-text" href="logout">Sign Out</a></li>
+                <li class="black-text">
+                    <div class="chip">
+                        <img src="{{ photo }}" alt="Contact Person"> {{ first_name }}
+                    </div>
+                </li>
+                <li><a class="btn-logout waves-effect waves-light btn red white-text" href="logout">Sign Out</a></li>
             </ul>
             <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons red-text">menu</i></a> {% endif %}
         </div>

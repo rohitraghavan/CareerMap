@@ -1,16 +1,23 @@
 import sqlite3 as sql
 
 
-def retrieve_users():
+def add_or_update_users(user_id, first_name, last_name, photo):
     '''
-    Retrieves users from db
-    Remove once Linkedin login is implemented
+    Add or update linkedin users to the databse
     '''
     with sql.connect("career-map.db") as con:
         con.row_factory = sql.Row
         cur = con.cursor()
-        users = cur.execute("SELECT * FROM users").fetchall()
-    return users
+        # Check if user already exists in users table
+        db_user_id = cur.execute(
+            "SELECT * FROM users where user_id = ?", (user_id, )).fetchone()
+        # If user doesnt exist in db, insert it. Else update existing record
+        if db_user_id is None:
+            cur.execute("INSERT INTO users (user_id, first_name, last_name, photo) VALUES (?, ?, ?, ?)",
+                        (user_id, first_name, last_name, photo))
+        else:
+            cur.execute("UPDATE users SET first_name=?, last_name=?, photo=? WHERE user_id=?",
+                         (first_name, last_name, photo, user_id))
 
 
 def retrieve_courses(concentration_name):
@@ -52,7 +59,7 @@ def insert_course(concentration_name, course_id, course_name, instructor):
                         (course_ref[0], concentration_name))
             con.commit()
     except:
-            con.close()
+        con.close()
 
 
 def insert_rating(course_ref, user_id, concentration_name):
@@ -74,12 +81,15 @@ def insert_review(course_ref, user_id, review):
     '''
     Add review for the course to the database
     '''
-    with sql.connect("career-map.db") as con:
-        #con.execute('pragma foreign_keys = ON')
-        cur = con.cursor()
-        cur.execute(
-            "INSERT INTO course_reviews (course_ref, user_id, review_text) VALUES (?, ?, ?)", (course_ref, user_id, review))
-        con.commit()
+    try:
+        with sql.connect("career-map.db") as con:
+            #con.execute('pragma foreign_keys = ON')
+            cur = con.cursor()
+            cur.execute(
+                "INSERT INTO course_reviews (course_ref, user_id, review_text) VALUES (?, ?, ?)", (course_ref, user_id, review))
+            con.commit()
+    except:
+        con.close()
 
 
 def retrieve_reviews(course_ref):
@@ -90,5 +100,5 @@ def retrieve_reviews(course_ref):
         con.row_factory = sql.Row
         cur = con.cursor()
         reviews = cur.execute(
-            "SELECT * FROM course_reviews WHERE course_ref = ?", (course_ref, )).fetchall()
+            "SELECT * FROM course_reviews_vw WHERE course_ref = ?", (course_ref, )).fetchall()
     return reviews

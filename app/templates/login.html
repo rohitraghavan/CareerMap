@@ -5,25 +5,18 @@
     <div class="parallax"><img src="{{ url_for('static', filename='background1.jpg') }}"></div>
 </div>
 
-<!--   Login Section   -->
+<!--   Linkedin Login Section   -->
 <div class="container">
     <div class="section">
         <form id="authenticate-login" action="authenticate-login" method="POST">
+            <input type="hidden" name="user-id" id="user-id">
+            <input type="hidden" name="first-name" id="first-name">
+            <input type="hidden" name="last-name" id="last-name">
+            <input type="hidden" name="photo" id="photo">
             <div class="row">
-                <div class="col s12">
-                    <div class="row">
-                        <div class="input-field col s12">
-                            <input placeholder="Login name" id="username" name="username" type="text" class="validate">
-                            <label for="username">Login Name</label>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="input-field col s12 center">
-                            <button class="btn waves-effect waves-light red submit" type="submit" name="action">Login
-                                <i class="material-icons right">send</i>
-                            </button>
-                        </div>
-                    </div>
+                <div class="input-field col s12 center">
+                    <script type="in/Login">
+                    </script>
                 </div>
             </div>
         </form>
@@ -44,8 +37,8 @@
                 <div class="icon-block">
                     <h2 class="center red-text"><i class="material-icons">info</i></h2>
                     <h5 class="center">What is iRate iSchool?</h5>
-                    <p class="light">iRate iSchool (no pun intended) is an application to bridge the gap between future careers of iSchoolers and courses relevant to those careers . We realise that course selection can be really hard, so we built an app were you can rate and review courses
-                        listed by career concentration.</p>
+                    <p class="light">iRate iSchool (no pun intended) is an application to bridge the gap between future careers of iSchoolers and courses relevant to those careers . We realise that course selection can be really hard, so we built an app were you can rate
+                        and review courses listed by career concentration.</p>
                 </div>
             </div>
             <div class="col s12 m4">

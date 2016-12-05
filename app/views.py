@@ -12,11 +12,13 @@ def index():
     Displays course concentration selectors
     '''
     current_user = ""
-    if "username" in session:
-        current_user = escape(session["username"])
+    if "user_id" in session:
+        user_id = escape(session["user_id"])
+        first_name = escape(session["first_name"])
+        photo = escape(session["photo"])
         session["concentration_name"] = ""
         session.pop("concentration_name")
-        return render_template("index.html", user=current_user)
+        return render_template("index.html", user=user_id, first_name=first_name, photo=photo)
     else:
         return redirect("login")
 
@@ -32,28 +34,18 @@ def login():
 @app.route("/authenticate-login", methods=["POST"])
 def authenticate_login():
     '''
-    Authenticates login and redirects to index if sucessful
-    Remove once Linkedin login is implemented
+    Inserts linkedin login info to db and session and redirects to index page
     '''
     if request.method == "POST":
-        username = request.form["username"]
-        if authenticate_user(username):
-            session["username"] = username
-            return redirect("index")
-        else:
-            return redirect("login")
-
-
-def authenticate_user(username):
-    '''
-    Retrieves users from db to authenticate attempted login
-    Remove once Linkedin login is implemented
-    '''
-    user_rows = models.retrieve_users()
-    for user_row in user_rows:
-        if user_row["user_id"] == username:
-            return True
-    return False
+        user_id = request.form["user-id"]
+        first_name = request.form["first-name"]
+        last_name = request.form["last-name"]
+        photo = request.form["photo"]
+        add_or_update_users(user_id, first_name, last_name, photo)
+        session["user_id"] = user_id
+        session["first_name"] = first_name
+        session["photo"] = photo
+        return redirect("index")
 
 
 @app.route("/logout")
@@ -61,7 +53,9 @@ def logout():
     '''
     Logs the user out and redirects to login page
     '''
-    session.pop("username")
+    session.pop("user_id")
+    session.pop("first_name")
+    session.pop("photo")
     session["concentration_name"] = ""
     session.pop("concentration_name")
     return redirect("login")
@@ -83,9 +77,10 @@ def display_concentration_courses(concentration_name):
     '''
     Displays a list of courses under the selected concentration
     '''
-    current_user = escape(session["username"])
+    first_name = escape(session["first_name"])
+    photo = escape(session["photo"])
     courses = models.retrieve_courses(concentration_name)
-    return render_template("index.html", user=current_user, concentration_name=concentration_name, courses=courses)
+    return render_template("index.html", concentration_name=concentration_name, courses=courses, first_name=first_name, photo=photo)
 
 
 @app.route("/add-course", methods=["POST"])
@@ -110,7 +105,7 @@ def add_rating():
     '''
     if request.method == "POST":
         concentration_name = escape(session["concentration_name"])
-        user_id = escape(session["username"])
+        user_id = escape(session["user_id"])
         course_ref = request.form["course_ref"]
         models.insert_rating(course_ref, user_id, concentration_name)
         return display_concentration_courses(concentration_name)
@@ -120,13 +115,18 @@ def display_reviews(course_ref, course_id, course_name):
     '''
     Displays reviews for the course
     '''
-    current_user = escape(session["username"])
+    first_name = escape(session["first_name"])
+    photo = escape(session["photo"])
     reviews = models.retrieve_reviews(course_ref)
-    return render_template("review.html", user=current_user, course_ref=course_ref, course_id=course_id, course_name=course_name, reviews=reviews)
+    return render_template("review.html", course_ref=course_ref, course_id=course_id, course_name=course_name, reviews=reviews, first_name=first_name, photo=photo)
 
 
 @app.route("/reviews", methods=["POST"])
 def reviews():
+    '''
+    Gets the course details from the form and calls method to display reviews
+    for that course
+    '''
     if request.method == "POST":
         course_ref = request.form["course_ref"]
         course_id = request.form["course_id"]
@@ -141,10 +141,10 @@ def add_review():
     Adds a review input by the user to the database
     '''
     if request.method == "POST":
-        current_user = escape(session["username"])
+        user_id = escape(session["user_id"])
         review = request.form["review"]
         course_ref = request.form["course_ref"]
         course_id = request.form["course_id"]
         course_name = request.form["course_name"]
-        models.insert_review(course_ref, current_user, review)
+        models.insert_review(course_ref, user_id, review)
     return display_reviews(course_ref, course_id, course_name)

@@ -86,19 +86,17 @@ function LoginUser(profiles) {
     var lastName = member.lastName;
     var photo = member.pictureUrl;
     if (userId != "") {
-      console.log("Welcome", firstName);
-      $("#user-id").val(userId);
-      $("#first-name").val(firstName);
-      $("#last-name").val(lastName);
-      $("#photo").val(photo);
-      $("#authenticate-login").submit();
+        $("#user-id").val(userId);
+        $("#first-name").val(firstName);
+        $("#last-name").val(lastName);
+        $("#photo").val(photo);
+        $("#authenticate-login").submit();
     }
 }
 
 //Linkedin Logout code
 $(".btn-logout").on("click", function() {
     if (IN.User.isAuthorized() == true) {
-        console.log("Goodbye")
         IN.User.logout();
     }
     setTimeout(function() {

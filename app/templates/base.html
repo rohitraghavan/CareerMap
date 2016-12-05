@@ -28,20 +28,22 @@
             {% if not login %}
             <ul class="right hide-on-med-and-down">
                 <li class="black-text">
+                    Welcome
                     <div class="chip">
                         <img src="{{ photo }}" alt="Contact Person"> {{ first_name }}
                     </div>
                 </li>
-                <li><a class="btn-logout waves-effect waves-light btn-large red white-text">Sign Out</a></li>
+                <li><a class="btn-logout waves-effect waves-light btn-large red lighten-2 white-text">Sign Out</a></li>
             </ul>
 
             <ul id="nav-mobile" class="side-nav">
                 <li class="black-text">
+                    Welcome
                     <div class="chip">
                         <img src="{{ photo }}" alt="Contact Person"> {{ first_name }}
                     </div>
                 </li>
-                <li><a class="btn-logout waves-effect waves-light btn red white-text">Sign Out</a></li>
+                <li><a class="btn-logout waves-effect waves-light btn red lighten-2 white-text">Sign Out</a></li>
             </ul>
             <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons red-text">menu</i></a> {% endif %}
         </div>

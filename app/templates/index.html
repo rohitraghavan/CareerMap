@@ -15,22 +15,22 @@
                 {% endif %}
                 <div class="row">
                     <div class="col s6 m4">
-                        <a class="btn-concentration-name btn-large waves-effect waves-light white red-text">Product Management</a>
+                        <a class="btn-concentration-name btn-large waves-effect waves-light white red-text text-lighten-2 lighten-2">Product Management</a>
                     </div>
                     <div class="col s6 m4">
-                        <a class="btn-concentration-name btn-large waves-effect waves-light white red-text">Data Science</a>
+                        <a class="btn-concentration-name btn-large waves-effect waves-light white red-text text-lighten-2 lighten-2">Data Science</a>
                     </div>
                     <div class="col s6 m4">
-                        <a class="btn-concentration-name btn-large waves-effect waves-light white red-text">Software Dev / Engineering</a>
+                        <a class="btn-concentration-name btn-large waves-effect waves-light white red-text text-lighten-2 lighten-2">Software Dev / Engineering</a>
                     </div>
                     <div class="col s6 m4">
-                        <a class="btn-concentration-name btn-large waves-effect waves-light white red-text">UX Design</a>
+                        <a class="btn-concentration-name btn-large waves-effect waves-light white red-text text-lighten-2 lighten-2">UX Design</a>
                     </div>
                     <div class="col s6 m4">
-                        <a class="btn-concentration-name btn-large waves-effect waves-light white red-text">UX Research</a>
+                        <a class="btn-concentration-name btn-large waves-effect waves-light white red-text text-lighten-2 lighten-2">UX Research</a>
                     </div>
                     <div class="col s6 m4">
-                        <a class="btn-concentration-name btn-large waves-effect waves-light white red-text">Information Policy</a>
+                        <a class="btn-concentration-name btn-large waves-effect waves-light white red-text text-lighten-2 lighten-2">Information Policy</a>
                     </div>
                 </div>
             </form>
@@ -58,7 +58,10 @@
                                     <p>Instructor(s): {{ course["instructor"] }}</p>
                                 </div>
                                 <div class="col s12 m2 right-align">
-                                    <h5>{{ course["ratings"] }} <a class="btn-add-rating small material-icons waves-effect red-text">thumb_up</a></h5>
+                                    <h5>{{ course["ratings"] }} <a class="btn-add-rating small material-icons waves-effect red-text text-lighten-2
+                                      {% if course["ratings"] > 0 %} tooltipped" data-position="bottom" data-delay="50" data-tooltip="Rated by: {{ course["rated_by"]}}">thumb_up</a></h5>
+                                      {% else %} ">thumb_up</a></h5>
+                                      {% endif %}
                                 </div>
                             </form>
                         </div>

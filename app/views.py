@@ -58,7 +58,7 @@ def logout():
     session.pop("photo")
     session["concentration_name"] = ""
     session.pop("concentration_name")
-    return redirect("login")
+    return redirect("/login")
 
 
 @app.route("/select-concentration", methods=["POST"])

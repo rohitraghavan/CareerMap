@@ -96,4 +96,6 @@ $(".btn-logout").on("click", function() {
         console.log("Goodbye")
         IN.User.logout();
     }
+    setTimeout(function(){ location.href = "/logout";; }, 500);  
+
 })

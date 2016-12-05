@@ -67,6 +67,10 @@ function validateAddCourseForm() {
 }
 
 //Linkedin Login Code
+$("#btn-linkedinlogin").on("click", function() {
+    IN.User.authorize(function() {});
+})
+
 function OnLinkedInFrameworkLoad() {
     IN.Event.on(IN, "auth", OnLinkedInAuth);
 }
@@ -81,13 +85,14 @@ function LoginUser(profiles) {
     var firstName = member.firstName;
     var lastName = member.lastName;
     var photo = member.pictureUrl;
-    console.log("Welcome", firstName);
-    $("#user-id").val(userId);
-    $("#first-name").val(firstName);
-    $("#last-name").val(lastName);
-    $("#photo").val(photo);
-    $("#authenticate-login").submit();
-
+    if (userId != "") {
+      console.log("Welcome", firstName);
+      $("#user-id").val(userId);
+      $("#first-name").val(firstName);
+      $("#last-name").val(lastName);
+      $("#photo").val(photo);
+      $("#authenticate-login").submit();
+    }
 }
 
 //Linkedin Logout code
@@ -96,6 +101,8 @@ $(".btn-logout").on("click", function() {
         console.log("Goodbye")
         IN.User.logout();
     }
-    setTimeout(function(){ location.href = "/logout";; }, 500);  
+    setTimeout(function() {
+        location.href = "/logout";;
+    }, 500);
 
 })

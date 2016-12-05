@@ -98,6 +98,26 @@ footer.page-footer {
     min-height: 360px;
 }
 
+#img-linkedin {
+    height: auto;
+    width: 50%;
+}
+
+.btn-hidden {
+  border: none;
+  background: inherit;
+}
+
+.btn-hidden:active {
+  border: none;
+  background: inherit;
+}
+
+.btn-hidden:focus {
+  border: none;
+  background: inherit;
+}
+
 
 /* change form input color */
 

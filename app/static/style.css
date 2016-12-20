@@ -60,7 +60,7 @@ footer.page-footer {
 }
 
 
-/* Career Map Customizations start here */
+/* IRate ISchool Customizations start here */
 
 .brand-logo>img {
     padding-left: 4px;
@@ -116,6 +116,10 @@ footer.page-footer {
 .btn-hidden:focus {
   border: none;
   background: inherit;
+}
+
+a {
+  color: rgba(255,255,255,0.8);
 }
 
 

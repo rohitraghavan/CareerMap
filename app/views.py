@@ -1,7 +1,6 @@
-from app import app, models, db
+from app import app, models
 from .models import *
 from flask import render_template, Flask, redirect, url_for, session, request, escape, g
-#from flask_oauthlib.client import OAuth
 
 
 @app.route("/")

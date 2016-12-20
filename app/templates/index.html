@@ -52,14 +52,14 @@
                     <div class="card-content">
                         <div class="row">
                             <form id="add-rating" action="add-rating" method="POST">
-                                <input type="hidden" class="course_ref" name="course_ref" value="{{ course["course_ref"] }}">
+                                <input type="hidden" class="course_ref" name="course_ref" value="{{ course[1] }}">
                                 <div class="col s12 m10">
-                                    <span class="card-title">{{ course["course_id"] }}. {{ course["course_name"]}}</span>
-                                    <p>Instructor(s): {{ course["instructor"] }}</p>
+                                    <span class="card-title">{{ course[2] }}. {{ course[3]}}</span>
+                                    <p>Instructor(s): {{ course[4] }}</p>
                                 </div>
                                 <div class="col s12 m2 right-align">
-                                    <h5>{{ course["ratings"] }} <a class="btn-add-rating small material-icons waves-effect red-text text-lighten-2
-                                      {% if course["ratings"] > 0 %} tooltipped" data-position="bottom" data-delay="50" data-tooltip="Rated by: {{ course["rated_by"]}}">thumb_up</a></h5>
+                                    <h5>{{ course[5] }} <a class="btn-add-rating small material-icons waves-effect red-text text-lighten-2
+                                      {% if course[5] > 0 %} tooltipped" data-position="bottom" data-delay="50" data-tooltip="Rated by {{ course[6]}}">thumb_up</a></h5>
                                       {% else %} ">thumb_up</a></h5>
                                       {% endif %}
                                 </div>
@@ -68,9 +68,9 @@
                     </div>
                     <div class="card-action">
                         <form id="reviews" action="reviews" method="POST">
-                            <input type="hidden" name="course_ref" id="course_ref" value="{{ course["course_ref"] }}">
-                            <input type="hidden" name="course_id" id="course_id" value="{{ course["course_id"] }}">
-                            <input type="hidden" name="course_name" id="course_name" value="{{ course["course_name"]}}">
+                            <input type="hidden" name="course_ref" id="course_ref" value="{{ course[1] }}">
+                            <input type="hidden" name="course_id" id="course_id" value="{{ course[2] }}">
+                            <input type="hidden" name="course_name" id="course_name" value="{{ course[3]}}">
                             <button class="btn-reviews btn-hidden" type="button" >Reviews</button>
                         </form>
                     </div>

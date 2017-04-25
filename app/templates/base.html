@@ -4,19 +4,12 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0" />
-    <title>IRate ISchool</title>
+    <title>Database Management</title>
 
     <!-- CSS  -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/css/materialize.min.css">
     <link href="{{ url_for('static', filename='style.css') }}" type="text/css" rel="stylesheet" media="screen,projection" />
-
-    <!-- Linkedin login stuff -->
-    <script type="text/javascript" src="http://platform.linkedin.com/in.js">
-        api_key: 86hjrklrkqr5im
-        onLoad: OnLinkedInFrameworkLoad
-        authorize: true
-    </script>
 
 </head>
 
@@ -24,7 +17,7 @@
     <!-- Nav bar header -->
     <nav class="white" role="navigation">
         <div class="nav-wrapper">
-            <a id="logo-container" class="brand-logo center" href="/index"><img src="{{ url_for('static', filename='berkeleyischool-logo-blue.jpg') }}"></a>
+            <a id="logo-container" class="brand-logo center" href="/index"><img src="{{ url_for('static', filename='berkeleylogo2.jpg') }}"></a>
             {% if not login %}
             <ul class="right hide-on-med-and-down">
                 <li class="black-text">
@@ -58,13 +51,13 @@
             <div class="row">
                 <div class="col s12">
                     <h5 class="white-text">About Us</h5>
-                    <p class="grey-text text-lighten-4">We are a team of UC Berkeley ISchool students who want to help YOU select courses relevant for your future career.</p>
+                    <p class="grey-text text-lighten-4">Database Management Spring 2017, Final Project</p>
                 </div>
             </div>
         </div>
         <div class="footer-copyright">
             <div class="container">
-                Made by <a href="mailto:rohit.raghavan@ischool.berkeley.edu">Rohit</a>, <a href="mailto:edward_yip@ischool.berkeley.edu">Ed</a>, <a href="mailto:hyemlee@ischool.berkeley.edu">Liz</a> and <a href="mailto:mudit@ischool.berkeley.edu">Mudit</a> 
+                Made by Eric, Fred, Kim, Liz, Owen
             </div>
         </div>
     </footer>

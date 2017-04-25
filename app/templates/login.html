@@ -2,37 +2,62 @@
 
 <!-- Parallax image -->
 <div id="index-banner" class="parallax-container">
-    <div class="parallax"><img src="{{ url_for('static', filename='background1.jpg') }}"></div>
+    <div class="parallax"><img src="{{ url_for('static', filename='musicbackground.jpg') }}"></div>
 </div>
 
-<!--   Linkedin Login Section   -->
 <div class="container">
-    <div class="section">
-        <form id="authenticate-login" action="authenticate-login" method="POST">
-            <input type="hidden" name="user-id" id="user-id">
-            <input type="hidden" name="first-name" id="first-name">
-            <input type="hidden" name="last-name" id="last-name">
-            <input type="hidden" name="photo" id="photo">
-            <div class="row">
-                <div class="input-field col s12 center">
-                    <button id="btn-linkedinlogin" class="btn-hidden" type="button"><img id="img-linkedin" src="{{ url_for('static', filename='Sign-In-Large---Active.png') }}"></button>
-                </div>
-                <div class="input-field col s12 center">
-                    to get started!
-                </div>
-            </div>
-        </form>
+  <div class="row">
+    <form method="post" action="{{url_for('music')}}" class="col s12">
+      <label>First Select Type of Search</label>
+        <select class="browser-default" name="typeofsearch" id="typeofsearch" value="">
+            <option selected>Search by</option>
+            <option value="artist">Artist</option>
+            <option value="region">Region</option>
+            <option value="label">Label</option>
+        </select>
+    <div class="row">
+        <div class="input-field col s12">
+          <input type="text" value="" name="searchbox">
+            <label for="searchbox"></label>
+        </div>
     </div>
+    <button class="btn waves-effect waves-light" type="submit" name="action">Search
+        <i class="material-icons right">send</i>
+    </button>
+    </form>
 </div>
-<br><br><br><br>
+</div>
+<br><br>
+<div class="container">
+  <div class="divider"></div>
+  <div class="section">
+    <h5>Take a look at our entire collection of data!</h5>
+    <form method="post" action="{{url_for('rawdata')}}" class="col s12">
+        <button class="btn waves-effect waves-light" type="submit" name="action">Search
+        <i class="material-icons right">send</i>
+    </button></form>
+  </div>
+</div>
 
+<!-- <div class="container">
+    <div class="section">
+        <div class="row">
+            <div class="col s12 m6">
+                
+            </div>
+            <div class="col s12 m6">
+                <p>Raw Data </p>
+            </div>
+        </div>
+    </div>
+</div> -->
 <!-- Parallax image -->
-<div class="parallax-container valign-wrapper">
+<!-- <div class="parallax-container valign-wrapper">
     <div class="parallax"><img src="{{ url_for('static', filename='background2.jpg') }}"></div>
-</div>
+</div> -->
 
 <!-- How does this work Section -->
-<div class="container">
+<!-- <div class="container">
     <div class="section">
         <div class="row">
             <div class="col s12 m4">
@@ -59,7 +84,7 @@
             </div>
         </div>
     </div>
-</div>
+</div> -->
 
 
 {% endblock %}

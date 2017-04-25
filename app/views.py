@@ -1,6 +1,6 @@
 from app import app, models
 from .models import *
-from flask import render_template, Flask, redirect, url_for, session, request, escape, g
+from flask import render_template, Flask, redirect, url_for, session, request, escape
 
 
 @app.route("/")
@@ -29,6 +29,27 @@ def login():
     '''
     return render_template("login.html", login=True)
 
+@app.route("/music", methods=['POST','GET'])
+def music():
+    '''
+    Displays music search results
+    '''
+    print("HIIIIIIIIIIIIIIIIIIIIII")
+    if request.method == "POST":
+        typeofsearch = request.form["typeofsearch"]
+        searchbox = request.form["searchbox"]
+    print("BYEEEEEEEEEEEEEEEEEEE")
+    return render_template("music.html", login=True)
+
+
+@app.route("/rawdata", methods=['POST'])
+def rawdata():
+    '''
+    Displays dataset 
+    '''
+    print("WORKING")
+    return render_template("login.html", login=True)
+
 
 @app.route("/authenticate-login", methods=["POST"])
 def authenticate_login():
@@ -45,19 +66,6 @@ def authenticate_login():
         session["first_name"] = first_name
         session["photo"] = photo
         return redirect("index")
-
-
-@app.route("/logout")
-def logout():
-    '''
-    Logs the user out and redirects to login page
-    '''
-    session.pop("user_id")
-    session.pop("first_name")
-    session.pop("photo")
-    session["concentration_name"] = ""
-    session.pop("concentration_name")
-    return redirect("/login")
 
 
 @app.route("/select-concentration", methods=["POST"])
@@ -120,18 +128,18 @@ def display_reviews(course_ref, course_id, course_name):
     return render_template("review.html", course_ref=course_ref, course_id=course_id, course_name=course_name, reviews=reviews, first_name=first_name, photo=photo)
 
 
-@app.route("/reviews", methods=["POST"])
-def reviews():
-    '''
-    Gets the course details from the form and calls method to display reviews
-    for that course
-    '''
-    if request.method == "POST":
-        course_ref = request.form["course_ref"]
-        course_id = request.form["course_id"]
-        course_name = request.form["course_name"]
-        reviews = models.retrieve_reviews(course_ref)
-        return display_reviews(course_ref, course_id, course_name)
+# @app.route("/reviews", methods=["POST"])
+# def reviews():
+#     '''
+#     Gets the course details from the form and calls method to display reviews
+#     for that course
+#     '''
+#     if request.method == "POST":
+#         course_ref = request.form["course_ref"]
+#         course_id = request.form["course_id"]
+#         course_name = request.form["course_name"]
+#         reviews = models.retrieve_reviews(course_ref)
+#         return display_reviews(course_ref, course_id, course_name)
 
 
 @app.route("/add-review", methods=["GET", "POST"])
